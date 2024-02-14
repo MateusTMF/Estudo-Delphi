@@ -1,0 +1,37 @@
+
+procedure TForm3.CadastrarClick(Sender: TObject);
+var
+  CLi : Integer;
+begin
+  Form1.ZConnection1.Connect;
+
+  with Form1.ZQuery1 do
+  begin
+
+    SQL.Clear;
+    SQL.add('select max(idcliente) as id from cliente ');
+    Open;
+
+    CLi := FieldByName('id').asInteger;
+
+
+    SQL.Clear;
+    SQL.add('insert into cliente (idCliente,nome,cidade,cpf) values(:id, :nome, :cidade, :cpf);');
+
+    ParamByName('nome').AsString := nome.Text;
+    ParamByName('cidade').AsString := cidade.Text;
+    ParamByName('cpf').AsString := cpf.Text;
+    ParamByName('id').AsInteger := Cli+1;
+
+    try
+      ExecSQL;
+      ShowMessage('Cadastro realizado com sucesso!');
+
+      Nome.Clear;
+      Cidade.Clear;
+      Cpf.Clear;
+    except
+       ShowMessage('Erro ao cadastrar cliente: ');
+    end;
+  end;
+end;
