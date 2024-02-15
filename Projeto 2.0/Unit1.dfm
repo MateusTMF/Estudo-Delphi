@@ -1,8 +1,8 @@
 object Form1: TForm1
   Left = 235
-  Top = 131
+  Top = 130
   Width = 923
-  Height = 549
+  Height = 550
   Caption = 'Form1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -27,8 +27,8 @@ object Form1: TForm1
     ParentFont = False
   end
   object Cliente: TButton
-    Left = 40
-    Top = 128
+    Left = 56
+    Top = 160
     Width = 75
     Height = 25
     Caption = 'Cliente'
@@ -36,8 +36,8 @@ object Form1: TForm1
     OnClick = ClienteClick
   end
   object Produto: TButton
-    Left = 40
-    Top = 176
+    Left = 56
+    Top = 192
     Width = 75
     Height = 25
     Caption = 'Produto'
@@ -169,9 +169,9 @@ object Form1: TForm1
     end
   end
   object DBGrid1: TDBGrid
-    Left = 152
-    Top = 32
-    Width = 633
+    Left = 136
+    Top = 24
+    Width = 737
     Height = 177
     DataSource = DataSource1
     TabOrder = 4
@@ -180,29 +180,33 @@ object Form1: TForm1
     TitleFont.Height = -11
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'idcliente'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'nome'
-        Width = 210
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'cidade'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'cpf'
-        Width = 154
-        Visible = True
-      end>
+  end
+  object ExcluirProduto: TButton
+    Left = 0
+    Top = 120
+    Width = 65
+    Height = 25
+    Caption = 'Excluir'
+    TabOrder = 5
+    OnClick = ExcluirProdutoClick
+  end
+  object Alterar: TButton
+    Left = 64
+    Top = 120
+    Width = 67
+    Height = 25
+    Caption = 'Alterar'
+    TabOrder = 6
+  end
+  object id: TLabeledEdit
+    Left = 32
+    Top = 96
+    Width = 65
+    Height = 21
+    EditLabel.Width = 51
+    EditLabel.Height = 13
+    EditLabel.Caption = 'ID Produto'
+    TabOrder = 7
   end
   object ZConnection1: TZConnection
     Protocol = 'postgresql-7'
@@ -219,23 +223,39 @@ object Form1: TForm1
     Connection = ZConnection1
     Active = True
     SQL.Strings = (
-      'select * from cliente')
+      'SELECT * from cliente'
+      '')
     Params = <>
     Left = 56
     Top = 8
+    object ZQueryClienteidcliente: TIntegerField
+      FieldName = 'idcliente'
+      Required = True
+    end
+    object ZQueryClientenome: TStringField
+      FieldName = 'nome'
+      Size = 30
+    end
+    object ZQueryClientecidade: TStringField
+      FieldName = 'cidade'
+      Size = 30
+    end
+    object ZQueryClientecpf: TStringField
+      FieldName = 'cpf'
+      Size = 15
+    end
   end
   object ZQueryProduto: TZQuery
     Connection = ZConnection1
     Active = True
     SQL.Strings = (
-      'select * from produto;')
+      'SELECT * from produto;')
     Params = <>
+    UpdateMode = umUpdateAll
     Left = 96
     Top = 8
   end
   object DataSource1: TDataSource
-    AutoEdit = False
-    DataSet = ZQueryProduto
     Left = 16
     Top = 48
   end

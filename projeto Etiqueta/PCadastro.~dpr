@@ -1,0 +1,23 @@
+program PCadastro;
+
+uses
+  Forms,
+  UCadastro in 'UCadastro.pas' {frmCliente},
+  URelCliente in 'URelCliente.pas' {frmRelCliente},
+  URelClienteFortes in 'URelClienteFortes.pas' {frmRelClienteFortes},
+  URelPedido in 'URelPedido.pas' {frmRelPedido},
+  URelPedidoAgrupado in 'URelPedidoAgrupado.pas' {frmpedidoAgrupado},
+  UEtiquetas in 'UEtiquetas.pas' {frmEtiqueta};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfrmCliente, frmCliente);
+  Application.CreateForm(TfrmRelCliente, frmRelCliente);
+  Application.CreateForm(TfrmRelClienteFortes, frmRelClienteFortes);
+  Application.CreateForm(TfrmRelPedido, frmRelPedido);
+  Application.CreateForm(TfrmpedidoAgrupado, frmpedidoAgrupado);
+  Application.CreateForm(TfrmEtiqueta, frmEtiqueta);
+  Application.Run;
+end.

@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, DB, ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZConnection, ExtCtrls, Grids, DBGrids;
+  ZConnection, ExtCtrls, Grids, DBGrids, ZSqlUpdate, Buttons;
 
 type
   TForm1 = class(TForm)
@@ -17,7 +17,6 @@ type
     CancCli: TButton;
     CadProduto: TGroupBox;
     ZConnection1: TZConnection;
-    ZQueryCliente: TZQuery;
     CancProd: TButton;
     CadProd: TButton;
     desc: TLabeledEdit;
@@ -26,15 +25,24 @@ type
     nome: TLabeledEdit;
     cidade: TLabeledEdit;
     cpf: TLabeledEdit;
+    ZQueryCliente: TZQuery;
     DBGrid1: TDBGrid;
+    ZQueryClienteidcliente: TIntegerField;
+    ZQueryClientenome: TStringField;
+    ZQueryClientecidade: TStringField;
+    ZQueryClientecpf: TStringField;
     ZQueryProduto: TZQuery;
     DataSource1: TDataSource;
+    ExcluirProduto: TButton;
+    Alterar: TButton;
+    id: TLabeledEdit;
     procedure ClienteClick(Sender: TObject);
     procedure ProdutoClick(Sender: TObject);
     procedure CadCliClick(Sender: TObject);
     procedure CancCliClick(Sender: TObject);
     procedure CancProdClick(Sender: TObject);
     procedure CadProdClick(Sender: TObject);
+    procedure ExcluirProdutoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -157,4 +165,21 @@ begin
  end;
 end;
 
+procedure TForm1.ExcluirProdutoClick(Sender: TObject);
+begin
+  ZConnection1.Connect;
+  With ZQueryProduto do
+  begin
+  SQL.Clear;
+  SQL.Add('delete from produto where idproduto ='+id.Text);
+
+
+  try
+    ExecSQL;
+    ShowMessage('Operação realizada com sucesso.');
+  Except
+    ShowMessage('Erro.');
+  end;
+end;
+end;
 end.
