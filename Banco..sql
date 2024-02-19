@@ -7,6 +7,10 @@
 drop table produto;
  
 insert into produto (descricao,qtd,valunit) values ('Pendrive',8,22.90);
+insert into produto (descricao,qtd,valunit) values ('Teclado',6,69.90);
+insert into produto (descricao,qtd,valunit) values ('Mouse',7,20.90);
+insert into produto (descricao,qtd,valunit) values ('Monitor',4,489.90);
+
 
 select * from produto;
 
@@ -21,7 +25,11 @@ drop table prod_ped;
 
 select * from prod_ped;
 
-insert into prod_ped (idproduto,idpedido) values (31,6);
+insert into prod_ped (idproduto,idpedido) values (1,1);
+insert into prod_ped (idproduto,idpedido) values (4,2);
+insert into prod_ped (idproduto,idpedido) values (2,3);
+
+
 
 create table pedido (
 	idpedido serial primary key,
@@ -34,7 +42,10 @@ create table pedido (
 );
 drop table pedido;
 
-insert into pedido (prazodias,qtd,idcliente,idvendedor) values (8,33,3,2);
+insert into pedido (prazodias,qtd,idcliente,idvendedor) values (8,1,1,1);
+insert into pedido (prazodias,qtd,idcliente,idvendedor) values (9,2,1,2);
+insert into pedido (prazodias,qtd,idcliente,idvendedor) values (6,3,2,3);
+
 
 select * from pedido;
 
@@ -48,6 +59,8 @@ create table cliente(
 drop table cliente;
 
 insert into cliente(nome,cidade,cep,cgc) values ('Marta','Votuporanga','30000-000','82331655322');
+insert into cliente(nome,cidade,cep,cgc) values ('Maria','Fernandópolis','32000-000','35331655322');
+
 
 select * from cliente;
 
@@ -58,6 +71,9 @@ create table vendedor (
 drop table vendedor;
 
 insert into vendedor (nome) values ('Debora');
+insert into vendedor (nome) values ('Marcos');
+insert into vendedor (nome) values ('Elias');
+
 
 select * from vendedor;
 
@@ -89,7 +105,11 @@ select p.idpedido from pedido p inner join prod_ped pp on p.idpedido = pp.idpedi
 1- 
 select * from produto where idproduto LIKE '3%'; 
 
+2-
 
+3-
+select * from produto order by valunit desc;
 
-
+4-
+select * from vendedor v inner join pedido p on v.idvendedor = p.idvendedor order by v.idvendedor
 
