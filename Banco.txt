@@ -28,7 +28,8 @@ select * from prod_ped;
 insert into prod_ped (idproduto,idpedido) values (1,1);
 insert into prod_ped (idproduto,idpedido) values (4,2);
 insert into prod_ped (idproduto,idpedido) values (2,3);
-
+insert into prod_ped (idproduto,idpedido) values (3,121);
+insert into prod_ped (idproduto,idpedido) values (2,189);
 
 
 create table pedido (
@@ -45,6 +46,8 @@ drop table pedido;
 insert into pedido (prazodias,qtd,idcliente,idvendedor) values (8,1,1,1);
 insert into pedido (prazodias,qtd,idcliente,idvendedor) values (9,2,1,2);
 insert into pedido (prazodias,qtd,idcliente,idvendedor) values (6,3,2,3);
+insert into pedido (idpedido,prazodias,qtd,idcliente,idvendedor) values (121,10,7,1,2);
+insert into pedido (idpedido,prazodias,qtd,idcliente,idvendedor) values (189,20,8,2,3);
 
 
 select * from pedido;
@@ -111,5 +114,27 @@ select * from produto where idproduto LIKE '3%';
 select * from produto order by valunit desc;
 
 4-
-select * from vendedor v inner join pedido p on v.idvendedor = p.idvendedor order by v.idvendedor
+select * from vendedor v inner join pedido p on v.idvendedor = p.idvendedor order by v.idvendedor;
 
+
+--Exercicios Roteiro 4 SQL Access--
+
+1-
+a)
+select v.idvendedor,c.nome,c.cgc,c.cidade,p.idpedido from cliente c inner join pedido p on c.idcliente = p.idcliente inner join vendedor v on p.idvendedor = v.idvendedor where p.idpedido = 121 or p.idpedido = 189 or p.idpedido = 203 or p.idpedido = 138;
+
+b)
+select p.descricao,pd.qtd from produto p inner join prod_ped pp on p.idproduto = pp.idproduto inner join pedido pd on pd.idpedido = pp.idpedido;
+
+c)
+select * from vendedor v inner join pedido p on v.idvendedor = p.idvendedor inner join prod_ped pp on pp.idpedido = p.idpedido inner join produto pd on pd.idproduto = pp.idproduto;
+
+d)
+
+
+--Exercicios Roteiro 5 SQL Access--
+
+
+1-
+a)
+select * from pedido p inner join prod_ped pp on pp.idpedido = p.idpedido inner join produto pd ON pd.idproduto = pp.idproduto;
